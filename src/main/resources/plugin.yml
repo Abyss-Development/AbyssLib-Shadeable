@@ -1,0 +1,7 @@
+name: AbyssLib
+version: '${project.version}'
+main: net.abyssdev.abysslib.AbyssLib
+authors:
+    - Relocation
+description: Main commons library for AbyssDev (https://discord.gg/T8B7g5RXZP)
+website: https://abyssdev.net
