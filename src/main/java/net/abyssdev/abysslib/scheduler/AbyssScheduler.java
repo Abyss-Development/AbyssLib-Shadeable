@@ -1,17 +1,17 @@
 package net.abyssdev.abysslib.scheduler;
 
-import net.abyssdev.abysslib.scheduler.impl.AsyncAbyssScheduler;
-import net.abyssdev.abysslib.scheduler.impl.SyncAbyssScheduler;
+import net.abyssdev.abysslib.scheduler.impl.AsyncScheduler;
+import net.abyssdev.abysslib.scheduler.impl.SyncScheduler;
 import org.bukkit.scheduler.BukkitTask;
 
 public interface AbyssScheduler {
 
     static AbyssScheduler async() {
-        return new AsyncAbyssScheduler();
+        return new AsyncScheduler();
     }
 
     static AbyssScheduler sync() {
-        return new SyncAbyssScheduler();
+        return new SyncScheduler();
     }
 
     void run(Runnable r);

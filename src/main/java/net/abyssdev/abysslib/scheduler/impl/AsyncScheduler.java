@@ -7,7 +7,7 @@ import org.bukkit.scheduler.BukkitTask;
 
 import java.util.concurrent.CompletableFuture;
 
-public class AsyncAbyssScheduler implements AbyssScheduler {
+public class AsyncScheduler implements AbyssScheduler {
 
     @Override
     public void run(Runnable r) {
