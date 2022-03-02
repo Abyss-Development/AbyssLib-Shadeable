@@ -1,8 +1,8 @@
 package net.abyssdev.abysslib.text;
 
 import lombok.Getter;
-import org.aspect.aspectcommons.builders.PlaceholderReplacer;
-import org.aspect.aspectcommons.chat.objects.Message;
+import net.abyssdev.abysslib.placeholder.PlaceholderReplacer;
+import net.abyssdev.abysslib.text.message.Message;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -10,6 +10,9 @@ import org.bukkit.entity.Player;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author Chubbyduck1
+ */
 public class MessageCache {
 
     @Getter
