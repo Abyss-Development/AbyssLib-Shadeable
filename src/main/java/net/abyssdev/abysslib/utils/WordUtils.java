@@ -53,7 +53,7 @@ public class WordUtils {
      */
     public String removeChars(String text, final char... chars) {
         for (final char characters : chars) {
-            text = text.replaceAll(String.valueOf(characters), "");
+            text = text.replace(String.valueOf(characters), "");
         }
 
         return text;
@@ -69,7 +69,7 @@ public class WordUtils {
      */
     public String replaceChars(String text, final String replacement, final char... chars) {
         for (final char character : chars) {
-            text = text.replaceAll(String.valueOf(character), replacement);
+            text = text.replace(String.valueOf(character), replacement);
         }
 
         return text;

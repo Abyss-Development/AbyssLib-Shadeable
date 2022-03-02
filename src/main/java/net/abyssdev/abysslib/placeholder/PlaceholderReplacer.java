@@ -3,6 +3,7 @@ package net.abyssdev.abysslib.placeholder;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 import me.clip.placeholderapi.PlaceholderAPI;
+import net.abyssdev.abysslib.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 
@@ -24,6 +25,31 @@ public class PlaceholderReplacer {
 
     public PlaceholderReplacer addPlaceholder(String key, String value) {
         this.placeholders.put(key, value);
+        return this;
+    }
+
+    public PlaceholderReplacer addPlaceholder(String key, int value) {
+        this.placeholders.put(key, Utils.format(value));
+        return this;
+    }
+
+    public PlaceholderReplacer addPlaceholder(String key, long value) {
+        this.placeholders.put(key, Utils.format(value));
+        return this;
+    }
+
+    public PlaceholderReplacer addPlaceholder(String key, double value) {
+        this.placeholders.put(key, Utils.format(value));
+        return this;
+    }
+
+    public PlaceholderReplacer addTimePlaceholder(String key, int seconds) {
+        this.placeholders.put(key, Utils.getTimeFormat(seconds * 1000L));
+
+        String uppercase = key.replace("%", "");
+        uppercase = "%" + uppercase + "_uppercase%";
+        
+        this.placeholders.put(uppercase, Utils.getTimeFormat(seconds * 1000L).toUpperCase());
         return this;
     }
 

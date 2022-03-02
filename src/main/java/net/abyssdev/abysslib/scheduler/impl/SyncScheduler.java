@@ -5,7 +5,7 @@ import net.abyssdev.abysslib.scheduler.AbyssScheduler;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
-public class SyncAbyssScheduler implements AbyssScheduler {
+public class SyncScheduler implements AbyssScheduler {
 
     @Override
     public void run(Runnable r) {

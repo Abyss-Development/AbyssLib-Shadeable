@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 @UtilityClass
 public class Utils {
 
-    private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("###,###.##");
+    private final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("###,###.##");
 
     /**
      * Get a generic type from an array at an index
@@ -178,6 +178,18 @@ public class Utils {
     }
 
     /**
+     * Get an {@link Optional} {@link Integer}
+     *
+     * @param args The {@link String} to get
+     * @return The {@link Optional} {@link Integer}
+     */
+    public Optional<Integer> getInt(final String args) {
+        final Integer value = Utils.isInteger(args) ? Integer.parseInt(args) : null;
+        return Optional.ofNullable(value);
+    }
+
+
+    /**
      * Get an {@link Optional} {@link Long}
      *
      * @param args The {@link String} to get
@@ -185,7 +197,6 @@ public class Utils {
      */
     public Optional<Long> getLong(final String args) {
         final Long value = Utils.isLong(args) ? Long.parseLong(args) : null;
-
         return Optional.ofNullable(value);
     }
 

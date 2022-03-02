@@ -1,7 +1,7 @@
 package net.abyssdev.abysslib.menu;
 
 import lombok.AllArgsConstructor;
-import net.abyssdev.abysslib.item.ItemBuilder;
+import net.abyssdev.abysslib.builders.ItemBuilder;
 import net.abyssdev.abysslib.menu.interfaces.MenuClick;
 import net.abyssdev.abysslib.menu.interfaces.MenuClose;
 import net.abyssdev.abysslib.menu.item.BorderItem;
