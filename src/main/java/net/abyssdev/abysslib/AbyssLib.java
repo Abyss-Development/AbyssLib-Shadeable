@@ -12,10 +12,6 @@ public final class AbyssLib extends JavaPlugin {
         this.saveDefaultConfig();
     }
 
-    @Override
-    public void onDisable() {
-    }
-
     public static AbyssLib getInstance() {
         return AbyssLib.instance;
     }
