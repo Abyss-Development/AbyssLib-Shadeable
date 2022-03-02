@@ -8,6 +8,8 @@ public final class AbyssLib extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        AbyssLib.instance = this;
+        this.saveDefaultConfig();
     }
 
     @Override
