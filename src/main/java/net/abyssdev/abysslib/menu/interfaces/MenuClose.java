@@ -1,6 +1,6 @@
 package net.abyssdev.abysslib.menu.interfaces;
 
-import gg.optimalgames.library.menu.MenuBuilder;
+import net.abyssdev.abysslib.menu.MenuBuilder;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 
 /**
