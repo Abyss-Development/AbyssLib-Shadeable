@@ -1,4 +1,4 @@
-package net.abyssdev.abysslib.item;
+package net.abyssdev.abysslib.builders;
 
 import com.cryptomorin.xseries.XMaterial;
 import com.mojang.authlib.GameProfile;
