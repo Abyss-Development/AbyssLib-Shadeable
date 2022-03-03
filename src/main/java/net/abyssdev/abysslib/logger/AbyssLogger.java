@@ -8,7 +8,7 @@ import java.util.logging.Level;
 
 public class AbyssLogger {
 
-    private static final boolean IS_DEBUG = AbyssLib.getInstance().getConfig().getBoolean("Debug-Mode", false);
+    private static final boolean IS_DEBUG = AbyssLib.getInstance().getConfig().getBoolean("debug-mode", false);
 
     public static void debug(final Level level, final String... messages) {
         if (!AbyssLogger.IS_DEBUG) {
