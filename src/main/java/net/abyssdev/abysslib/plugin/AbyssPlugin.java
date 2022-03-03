@@ -1,5 +1,6 @@
 package net.abyssdev.abysslib.plugin;
 
+import net.abyssdev.abysslib.text.MessageCache;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -24,6 +25,12 @@ public abstract class AbyssPlugin extends JavaPlugin {
         }
 
         return YamlConfiguration.loadConfiguration(file);
+    }
+
+    protected void loadMessages(final MessageCache cache, final FileConfiguration config) {
+        for (final String key : config.getConfigurationSection("messages").getKeys(false)) {
+            cache.loadMessage("messages." + key);
+        }
     }
 
 }
