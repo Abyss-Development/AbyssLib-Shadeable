@@ -43,7 +43,7 @@ public class MenuBuilder implements InventoryHolder {
      * Construct a new {@link MenuBuilder}
      */
     public MenuBuilder() {
-        this.title = "&8&lNO TITLE";
+        this.title = Color.parse("&8&lNO TITLE");
         this.size = 54;
 
         this.itemBuilderMap = new HashMap<>();
@@ -61,7 +61,7 @@ public class MenuBuilder implements InventoryHolder {
      * @param size  The size of the inventory
      */
     public MenuBuilder(final String title, final int size) {
-        this.title = title;
+        this.title = Color.parse(title);
         this.size = size;
 
         this.itemBuilderMap = new HashMap<>();
@@ -78,8 +78,8 @@ public class MenuBuilder implements InventoryHolder {
      * @param config The {@link FileConfiguration} to load from
      */
     public MenuBuilder(final FileConfiguration config) {
-        this.title = config.getString("Title");
-        this.size = config.getInt("Size");
+        this.title = config.getString("title");
+        this.size = config.getInt("size");
 
         this.itemBuilderMap = new HashMap<>();
         this.menuClickMap = new HashMap<>();
@@ -97,21 +97,21 @@ public class MenuBuilder implements InventoryHolder {
      * @param config The {@link FileConfiguration}
      */
     private void loadItems(final FileConfiguration config) {
-        if (!config.isConfigurationSection("Items")) {
+        if (!config.isConfigurationSection("items")) {
             return;
         }
 
-        final ConfigurationSection configSection = config.getConfigurationSection("Items");
+        final ConfigurationSection configSection = config.getConfigurationSection("items");
 
         if (configSection == null) {
             return;
         }
 
         for (final String key : configSection.getKeys(false)) {
-            final String itemPath = "Items" + "." + key;
+            final String itemPath = "items" + "." + key;
 
-            final ItemBuilder itemBuilder = new ItemBuilder(config, itemPath + ".Display-Item");
-            final List<Integer> slots = Utils.getSlots(config.getStringList(itemPath + ".Slots"));
+            final ItemBuilder itemBuilder = new ItemBuilder(config, itemPath + ".display-Item");
+            final List<Integer> slots = Utils.getSlots(config.getStringList(itemPath + ".slots"));
 
             for (final int slot : slots) {
                 this.itemBuilderMap.put(slot, itemBuilder);
