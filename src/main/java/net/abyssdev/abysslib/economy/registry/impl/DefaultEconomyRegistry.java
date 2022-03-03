@@ -1,7 +1,7 @@
 package net.abyssdev.abysslib.economy.registry.impl;
 
 
-import net.abyssdev.abysslib.economy.provider.EconomyProvider;
+import net.abyssdev.abysslib.economy.provider.Economy;
 import net.abyssdev.abysslib.economy.provider.impl.ExperienceEconomy;
 import net.abyssdev.abysslib.economy.provider.impl.VaultEconomy;
 import net.abyssdev.abysslib.economy.registry.EconomyRegistry;
@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class DefaultEconomyRegistry implements EconomyRegistry {
 
-    private final Map<String, EconomyProvider> economyProviderMap;
+    private final Map<String, Economy> economyProviderMap;
 
     public DefaultEconomyRegistry() {
         this.economyProviderMap = new HashMap<>();
@@ -34,13 +34,13 @@ public class DefaultEconomyRegistry implements EconomyRegistry {
     }
 
     @Override
-    public EconomyProvider getEconomy(String id) {
+    public Economy getEconomy(String id) {
         return economyProviderMap.get(id.toLowerCase());
     }
 
     @Override
-    public void addEconomy(EconomyProvider economyProvider) {
-        economyProviderMap.put(economyProvider.getName().toLowerCase(), economyProvider);
+    public void addEconomy(Economy economy) {
+        economyProviderMap.put(economy.getName().toLowerCase(), economy);
     }
 
     private static DefaultEconomyRegistry INSTANCE;

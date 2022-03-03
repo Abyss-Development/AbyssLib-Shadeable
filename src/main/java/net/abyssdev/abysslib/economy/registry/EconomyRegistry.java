@@ -1,13 +1,13 @@
 package net.abyssdev.abysslib.economy.registry;
 
-import net.abyssdev.abysslib.economy.provider.EconomyProvider;
+import net.abyssdev.abysslib.economy.provider.Economy;
 
 public interface EconomyRegistry {
 
-    void addEconomy(EconomyProvider provider);
+    void addEconomy(Economy provider);
 
     boolean hasEconomy(String id);
 
-    EconomyProvider getEconomy(String id);
+    Economy getEconomy(String id);
 
 }

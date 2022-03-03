@@ -1,13 +1,14 @@
 package net.abyssdev.abysslib.economy.provider.impl;
 
-import net.abyssdev.abysslib.economy.provider.EconomyProvider;
+import net.abyssdev.abysslib.economy.provider.Economy;
 import net.abyssdev.abysslib.utils.ExperienceUtils;
 import org.bukkit.entity.Player;
 
-public class ExperienceEconomy extends EconomyProvider {
+public class ExperienceEconomy implements Economy {
 
-    public ExperienceEconomy() {
-        super("Experience");
+    @Override
+    public String getName() {
+        return "Experience";
     }
 
     @Override

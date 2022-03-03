@@ -1,41 +1,43 @@
 package net.abyssdev.abysslib.economy.provider.impl;
 
-import net.abyssdev.abysslib.economy.provider.EconomyProvider;
-import net.milkbowl.vault.economy.Economy;
+import net.abyssdev.abysslib.economy.provider.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
-public class VaultEconomy extends EconomyProvider {
+public class VaultEconomy implements Economy {
 
     private final boolean isValid;
-    private Economy economy;
+    private net.milkbowl.vault.economy.Economy economy;
 
     public VaultEconomy() {
-        super("Vault");
+        this.isValid = setupEconomy();
+    }
 
-        isValid = setupEconomy();
+    @Override
+    public String getName() {
+        return "Vault";
     }
 
     @Override
     public double getBalance(Player player) {
-        if (isValid) {
-            return economy.getBalance(player);
+        if (this.isValid) {
+            return this.economy.getBalance(player);
         }
         return 0;
     }
 
     @Override
     public void addBalance(Player player, double amount) {
-        if (isValid) {
-            economy.depositPlayer(player, amount);
+        if (this.isValid) {
+            this.economy.depositPlayer(player, amount);
         }
     }
 
     @Override
     public void withdrawBalance(Player player, double amount) {
-        if (isValid) {
-            economy.withdrawPlayer(player, amount);
+        if (this.isValid) {
+            this.economy.withdrawPlayer(player, amount);
         }
     }
 
@@ -43,11 +45,14 @@ public class VaultEconomy extends EconomyProvider {
         if (Bukkit.getServer().getPluginManager().getPlugin("Vault") == null) {
             return false;
         }
-        RegisteredServiceProvider<Economy> rsp = Bukkit.getServer().getServicesManager().getRegistration(Economy.class);
+
+        RegisteredServiceProvider<net.milkbowl.vault.economy.Economy> rsp = Bukkit.getServer().getServicesManager().getRegistration(net.milkbowl.vault.economy.Economy.class);
+
         if (rsp == null) {
             return false;
         }
-        economy = rsp.getProvider();
-        return economy != null;
+
+        this.economy = rsp.getProvider();
+        return true;
     }
 }
