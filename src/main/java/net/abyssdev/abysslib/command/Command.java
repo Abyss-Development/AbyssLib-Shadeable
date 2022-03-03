@@ -2,11 +2,13 @@ package net.abyssdev.abysslib.command;
 
 import net.abyssdev.abysslib.command.context.CommandContext;
 import net.abyssdev.abysslib.command.registration.CommandRegistration;
+import net.abyssdev.abysslib.logger.AbyssLogger;
 import net.abyssdev.abysslib.text.message.Message;
 import org.bukkit.command.CommandSender;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
+import java.util.logging.Level;
 
 /**
  * @author sysdm-del
@@ -61,7 +63,7 @@ public abstract class Command<T extends CommandSender> extends org.bukkit.comman
                 final String[] copied = Arrays.copyOfRange(args, 1, args.length);
 
                 if (!this.sender.isInstance(commandSender)) {
-                    commandSender.sendMessage("&4&l[&c&l!&4&l] &r&cYou cannot do this!");
+                    AbyssLogger.log(Level.INFO, "You cannot do this!");
                     return true;
                 }
 
