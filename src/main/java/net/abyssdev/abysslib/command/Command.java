@@ -97,7 +97,7 @@ public abstract class Command<T extends CommandSender> extends org.bukkit.comman
         }
 
         if (!this.sender.isInstance(commandSender)) {
-            commandSender.sendMessage("&4&l[&c&l!&4&l] &r&cYou cannot do this!");
+            AbyssLogger.log(Level.INFO, "You cannot do this!");
             return true;
         }
 
