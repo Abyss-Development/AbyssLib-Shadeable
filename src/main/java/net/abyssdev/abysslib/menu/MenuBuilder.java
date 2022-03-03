@@ -325,6 +325,36 @@ public class MenuBuilder implements InventoryHolder {
     }
 
     /**
+     * Set {@link BorderItem}s
+     *
+     * @param borders The {@link BorderItem}s
+     */
+    public void setBorders(final List<BorderItem> borders) {
+        for (final BorderItem borderItem : borders) {
+            for (final ImmutablePair<Integer, Integer> pair : borderItem.getMinMax()) {
+                for (int i = pair.getKey(); i <= pair.getValue(); i++) {
+                    this.borderMap.put(i, borderItem.getBorderItem());
+                }
+            }
+        }
+    }
+
+    /**
+     * Set {@link BorderItem}s
+     *
+     * @param borders The {@link BorderItem}s
+     */
+    public void setBorders(final Set<BorderItem> borders) {
+        for (final BorderItem borderItem : borders) {
+            for (final ImmutablePair<Integer, Integer> pair : borderItem.getMinMax()) {
+                for (int i = pair.getKey(); i <= pair.getValue(); i++) {
+                    this.borderMap.put(i, borderItem.getBorderItem());
+                }
+            }
+        }
+    }
+
+    /**
      * Get the {@link Set} of {@link MenuClose}s
      *
      * @return returns {@link Set<MenuClose>}
