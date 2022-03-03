@@ -16,8 +16,9 @@ public abstract class AbyssPlugin extends JavaPlugin {
      * @return returns a {@link FileConfiguration} with the specified name.
      */
 
-    public FileConfiguration getConfig(final String path) {
-        final File file = new File(this.getDataFolder(), path + ".yml");
+    public FileConfiguration getConfig(String path) {
+        path = path + ".yml";
+        final File file = new File(this.getDataFolder(), path);
 
         if (!file.exists()) {
             file.getParentFile().mkdirs();
