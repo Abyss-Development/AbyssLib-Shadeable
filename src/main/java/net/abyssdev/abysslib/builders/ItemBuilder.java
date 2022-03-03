@@ -45,7 +45,7 @@ public class ItemBuilder implements Cloneable {
         this.potionType = config.getString(path + ".potion-type");
         this.data = (short) config.getInt(path + ".data");
         this.color = config.getInt(path + ".color", 999999999);
-        this.customModelData = config.getInt(path + ".Custom-Model-Data", 0);
+        this.customModelData = config.getInt(path + ".custom-model-data", 0);
     }
 
     public ItemStack parse() {
