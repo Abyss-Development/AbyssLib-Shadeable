@@ -32,7 +32,7 @@ public class CommandRegistration {
     }
 
     public static void register(final Command command) {
-        CommandRegistration.commandMap.register("VilleCommons", command);
+        CommandRegistration.commandMap.register("AbyssLib", command);
     }
 
     public static void unregister(final Command command) {
