@@ -6,6 +6,8 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 /**
  * The interface for Menu Clicks
  */
+
+@FunctionalInterface
 public interface MenuClick {
 
     /**

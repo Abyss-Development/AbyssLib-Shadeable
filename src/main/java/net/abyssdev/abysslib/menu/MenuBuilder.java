@@ -27,7 +27,7 @@ import java.util.*;
  */
 @SuppressWarnings("unused") // Library - OFC it's unused
 @AllArgsConstructor
-public class MenuBuilder implements InventoryHolder {
+public final class MenuBuilder implements InventoryHolder {
 
     private String title;
     private int size;

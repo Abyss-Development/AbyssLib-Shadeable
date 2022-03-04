@@ -1,6 +1,7 @@
 name: AbyssLib
 version: '${project.version}'
 main: net.abyssdev.abysslib.AbyssLib
+api-version: 1.16
 authors:
     - Relocation
 description: Main commons library for AbyssDev (https://discord.gg/T8B7g5RXZP)

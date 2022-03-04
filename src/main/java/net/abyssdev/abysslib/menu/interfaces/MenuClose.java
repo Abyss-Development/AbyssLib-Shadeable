@@ -6,6 +6,8 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 /**
  * The {@link MenuClose} interface
  */
+
+@FunctionalInterface
 public interface MenuClose {
 
     /**

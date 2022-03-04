@@ -129,7 +129,7 @@ public class Utils {
         }
 
         if (second > 0) {
-            sb.append(second).append("s.");
+            sb.append(second).append("s");
         }
 
         final String s = sb.toString();

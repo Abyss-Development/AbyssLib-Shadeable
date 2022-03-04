@@ -54,6 +54,7 @@ public class ItemBuilder implements Cloneable {
 
     public ItemStack parse(final PlaceholderReplacer placeholders) {
         final Optional<XMaterial> xMaterial = XMaterial.matchXMaterial(this.material);
+
         if (!xMaterial.isPresent()) {
             throw new NullPointerException("The material cannot be null");
         }
@@ -61,6 +62,7 @@ public class ItemBuilder implements Cloneable {
         ItemStack itemStack = xMaterial.get().parseItem();
 
         final ItemMeta itemMeta = itemStack.getItemMeta();
+
         itemMeta.setDisplayName(Color.parse(placeholders.parse(this.displayName)));
         itemMeta.setLore(Color.parse(placeholders.parse(new ArrayList<>(this.lore))));
 
