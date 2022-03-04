@@ -40,6 +40,8 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
+                            <finalName>AbyssLib</finalName>
+                            <minimizeJar>truew</minimizeJar>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
                         </configuration>
                     </execution>
