@@ -13,6 +13,7 @@ import net.abyssdev.abysslib.utils.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
@@ -242,6 +243,53 @@ public final class MenuBuilder implements InventoryHolder {
 
             if (meta != null && meta.getLore() != null) {
                 meta.setLore(replacer.parse(meta.getLore()));
+            }
+
+            item.setItemMeta(meta);
+            inventory.setItem(itemEntry.getKey(), item);
+        }
+
+        this.inventory = inventory;
+        return inventory;
+    }
+
+    /**
+     * Build the GUI with placeholders
+     *
+     * @param replacer The placeholders to build with
+     * @return The built {@link Inventory}
+     */
+    public Inventory build(final Player player, final PlaceholderReplacer replacer) {
+        final Inventory inventory = this.inventory == null
+                ? Bukkit.createInventory(this, this.size, replacer.parse(player, this.title))
+                : this.inventory;
+
+        for (final Map.Entry<Integer, ItemStack> itemEntry : this.borderMap.entrySet()) {
+            if (itemEntry.getKey() > inventory.getSize()) {
+                continue;
+            }
+
+            inventory.setItem(itemEntry.getKey(), itemEntry.getValue());
+        }
+
+        for (final Map.Entry<Integer, ItemBuilder> itemEntry : this.itemBuilderMap.entrySet()) {
+            inventory.setItem(itemEntry.getKey(), itemEntry.getValue().parse(player, replacer));
+        }
+
+        for (final Map.Entry<Integer, ItemStack> itemEntry : this.itemStackMap.entrySet()) {
+            if (itemEntry.getKey() > inventory.getSize()) {
+                continue;
+            }
+
+            final ItemStack item = itemEntry.getValue();
+            final ItemMeta meta = item.getItemMeta();
+
+            if (meta != null) {
+                meta.setDisplayName(replacer.parse(player, meta.getDisplayName()));
+            }
+
+            if (meta != null && meta.getLore() != null) {
+                meta.setLore(replacer.parse(player, meta.getLore()));
             }
 
             item.setItemMeta(meta);

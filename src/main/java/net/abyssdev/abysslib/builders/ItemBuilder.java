@@ -9,6 +9,7 @@ import net.abyssdev.abysslib.placeholder.PlaceholderReplacer;
 import net.abyssdev.abysslib.text.Color;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -33,7 +34,6 @@ public class ItemBuilder implements Cloneable {
     private final List<String> lore;
     private final boolean enchanted, hideItemFlags;
     private final int color, customModelData;
-    private final short data;
 
     public ItemBuilder(FileConfiguration config, String path) {
         this.material = config.getString(path + ".material");
@@ -43,7 +43,6 @@ public class ItemBuilder implements Cloneable {
         this.enchanted = config.getBoolean(path + ".enchanted");
         this.hideItemFlags = config.getBoolean(path + ".hide-flags");
         this.potionType = config.getString(path + ".potion-type");
-        this.data = (short) config.getInt(path + ".data");
         this.color = config.getInt(path + ".color", 999999999);
         this.customModelData = config.getInt(path + ".custom-model-data", 0);
     }
@@ -65,6 +64,47 @@ public class ItemBuilder implements Cloneable {
 
         itemMeta.setDisplayName(Color.parse(placeholders.parse(this.displayName)));
         itemMeta.setLore(Color.parse(placeholders.parse(new ArrayList<>(this.lore))));
+
+        if (this.enchanted) {
+            itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+        }
+
+        if (this.hideItemFlags) {
+            itemMeta.addItemFlags(ItemFlag.values());
+        }
+
+        itemStack.setItemMeta(itemMeta);
+
+        if (itemStack.getType().name().contains("LEATHER_") && this.color != 999999999) {
+            final LeatherArmorMeta meta = (LeatherArmorMeta) itemStack.getItemMeta();
+            meta.setColor(org.bukkit.Color.fromRGB(this.color));
+            itemStack.setItemMeta(meta);
+        }
+
+        if (this.enchanted) {
+            itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
+        }
+
+        itemStack = parseSkull(itemStack, placeholders);
+        itemStack = applyPotionMeta(itemStack);
+        itemStack = applyCustomModelData(itemStack);
+
+        return itemStack;
+    }
+
+    public ItemStack parse(final Player player, final PlaceholderReplacer placeholders) {
+        final Optional<XMaterial> xMaterial = XMaterial.matchXMaterial(this.material);
+
+        if (!xMaterial.isPresent()) {
+            throw new NullPointerException("The material cannot be null");
+        }
+
+        ItemStack itemStack = xMaterial.get().parseItem();
+
+        final ItemMeta itemMeta = itemStack.getItemMeta();
+
+        itemMeta.setDisplayName(Color.parse(placeholders.parse(player, this.displayName)));
+        itemMeta.setLore(Color.parse(placeholders.parse(player, new ArrayList<>(this.lore))));
 
         if (this.enchanted) {
             itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
