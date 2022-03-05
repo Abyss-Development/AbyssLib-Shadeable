@@ -14,13 +14,13 @@ public class CommandRegistration {
     private static CommandMap commandMap;
 
     static {
-        CommandRegistration.commandMap = (CommandMap) CommandRegistration.getPrivateField(Bukkit.getServer().getPluginManager(), "commandMap", false);
+        CommandRegistration.commandMap = (CommandMap) CommandRegistration.getPrivateField(Bukkit.getServer().getPluginManager(), "commandMap");
     }
 
     @SneakyThrows
-    private static Object getPrivateField(final Object object, final String fieldName, final boolean superClass) {
+    private static Object getPrivateField(final Object object, final String fieldName) {
         final Class<?> clazz = object.getClass();
-        final Field field = superClass ? clazz.getSuperclass().getDeclaredField(fieldName) : clazz.getDeclaredField(fieldName);
+        final Field field = clazz.getDeclaredField(fieldName);
         field.setAccessible(true);
         final Object result = field.get(object);
         field.setAccessible(false);
@@ -28,7 +28,7 @@ public class CommandRegistration {
     }
 
     private static Map<String, Command> getKnownCommands() {
-        return (Map<String, Command>) CommandRegistration.getPrivateField(CommandRegistration.commandMap, "knownCommands", true);
+        return (Map<String, Command>) CommandRegistration.getPrivateField(CommandRegistration.commandMap, "knownCommands");
     }
 
     public static void register(final Command command) {

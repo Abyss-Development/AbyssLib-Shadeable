@@ -41,7 +41,7 @@
                         </goals>
                         <configuration>
                             <finalName>AbyssLib</finalName>
-                            <minimizeJar>truew</minimizeJar>
+                            <minimizeJar>true</minimizeJar>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
                         </configuration>
                     </execution>
