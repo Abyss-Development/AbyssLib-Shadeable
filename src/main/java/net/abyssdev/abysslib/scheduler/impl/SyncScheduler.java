@@ -1,6 +1,6 @@
 package net.abyssdev.abysslib.scheduler.impl;
 
-import net.abyssdev.abysslib.AbyssLib;
+import net.abyssdev.abysslib.plugin.AbyssPlugin;
 import net.abyssdev.abysslib.scheduler.AbyssScheduler;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
@@ -14,7 +14,7 @@ public class SyncScheduler implements AbyssScheduler {
             public void run() {
                 r.run();
             }
-        }.runTask(AbyssLib.getInstance());
+        }.runTask(AbyssPlugin.getInstance());
     }
 
     @Override
@@ -24,7 +24,7 @@ public class SyncScheduler implements AbyssScheduler {
             public void run() {
                 r.run();
             }
-        }.runTaskLater(AbyssLib.getInstance(), l);
+        }.runTaskLater(AbyssPlugin.getInstance(), l);
     }
 
     @Override
@@ -34,7 +34,7 @@ public class SyncScheduler implements AbyssScheduler {
             public void run() {
                 r.run();
             }
-        }.runTaskTimer(AbyssLib.getInstance(), 0, l);
+        }.runTaskTimer(AbyssPlugin.getInstance(), 0, l);
     }
 
 }

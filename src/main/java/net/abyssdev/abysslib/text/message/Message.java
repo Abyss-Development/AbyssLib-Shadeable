@@ -45,18 +45,18 @@ public class Message {
         this.pitch = config.getInt(path + ".sound.pitch", (int) XSound.DEFAULT_PITCH);
 
         this.actionBarEnabled = config.getBoolean(path + ".action-bar.enabled", false);
-        this.actionBar = config.getString(path + ".action-bar.value", "");
+        this.actionBar = Color.parse(config.getString(path + ".action-bar.value", ""));
 
         this.titleEnabled = config.getBoolean(path + ".title.enabled", false);
-        this.title = config.getString(path + ".title.title", "");
-        this.subTitle = config.getString(path + ".title.sub-title");
+        this.title = Color.parse(config.getString(path + ".title.title", ""));
+        this.subTitle = Color.parse(config.getString(path + ".title.sub-title"));
 
         this.fadeInTicks = config.getInt(path + ".title.advanced.fade-in-ticks", 20);
         this.stayTicks = config.getInt(path + ".title.advanced.stay-ticks", 20);
         this.fadeOutTicks = config.getInt(path + ".title.advanced.fade-out-ticks", 20);
 
         this.messageEnabled = config.getBoolean(path + ".message.enabled", false);
-        this.messages = config.getStringList(path + ".message.value");
+        this.messages = Color.parse(config.getStringList(path + ".message.value"));
     }
 
     public void send(CommandSender sender) {
@@ -67,11 +67,11 @@ public class Message {
 
         if (sender instanceof Player && this.messageEnabled) {
             for (String message : this.messages) {
-                sender.sendMessage(placeholders.parse((OfflinePlayer) sender, Color.parse(message)));
+                sender.sendMessage(placeholders.parse((OfflinePlayer) sender, message));
             }
         } else if (this.messageEnabled) {
             for (String message : this.messages) {
-                sender.sendMessage(placeholders.parse(Color.parse(message)));
+                sender.sendMessage(placeholders.parse(message));
             }
         }
 
