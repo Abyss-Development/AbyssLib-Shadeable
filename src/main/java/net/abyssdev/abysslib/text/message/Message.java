@@ -49,7 +49,7 @@ public class Message {
 
         this.titleEnabled = config.getBoolean(path + ".title.enabled", false);
         this.title = Color.parse(config.getString(path + ".title.title", ""));
-        this.subTitle = Color.parse(config.getString(path + ".title.sub-title"));
+        this.subTitle = Color.parse(config.getString(path + ".title.sub-title", ""));
 
         this.fadeInTicks = config.getInt(path + ".title.advanced.fade-in-ticks", 20);
         this.stayTicks = config.getInt(path + ".title.advanced.stay-ticks", 20);
