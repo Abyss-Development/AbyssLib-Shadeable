@@ -36,6 +36,27 @@ public class Message {
 
     private final List<String> messages;
 
+    public Message(FileConfiguration config, String path) {
+        this.soundEnabled = config.getBoolean(path + ".sound.enabled", false);
+        this.sound = config.getString(path + ".sound.value", "ENTITY_PLAYER_LEVELUP");
+        this.volume = config.getInt(path + ".sound.volume", (int) XSound.DEFAULT_VOLUME);
+        this.pitch = config.getInt(path + ".sound.pitch", (int) XSound.DEFAULT_PITCH);
+
+        this.actionBarEnabled = config.getBoolean(path + ".action-bar.enabled", false);
+        this.actionBar = Color.parse(config.getString(path + ".action-bar.value", ""));
+
+        this.titleEnabled = config.getBoolean(path + ".title.enabled", false);
+        this.title = Color.parse(config.getString(path + ".title.title", ""));
+        this.subTitle = Color.parse(config.getString(path + ".title.sub-title", ""));
+
+        this.fadeInTicks = config.getInt(path + ".title.advanced.fade-in-ticks", 20);
+        this.stayTicks = config.getInt(path + ".title.advanced.stay-ticks", 20);
+        this.fadeOutTicks = config.getInt(path + ".title.advanced.fade-out-ticks", 20);
+
+        this.messageEnabled = config.getBoolean(path + ".message.enabled", false);
+        this.messages = Color.parse(config.getStringList(path + ".message.value"));
+    }
+
     public Message(MessageCache messageCache, String path) {
         FileConfiguration config = messageCache.getConfig();
 

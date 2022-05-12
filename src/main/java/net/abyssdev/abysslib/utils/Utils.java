@@ -117,15 +117,15 @@ public class Utils {
         final StringBuilder sb = new StringBuilder();
 
         if (days > 0) {
-            sb.append(days).append("d,");
+            sb.append(days).append(hours > 0 ? "d, " : "d");
         }
 
         if (hours > 0) {
-            sb.append(hours).append("h,");
+            sb.append(hours).append(minutes > 0 ? "h, " : "h");
         }
 
         if (minutes > 0) {
-            sb.append(minutes).append("m,");
+            sb.append(minutes).append(second > 0 ? "m, " : "m");
         }
 
         if (second > 0) {

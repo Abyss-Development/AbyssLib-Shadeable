@@ -5,10 +5,6 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Chubbyduck1
- * @param <E>
- */
 @Data
 public class PageBuilder<E> {
 
@@ -22,27 +18,23 @@ public class PageBuilder<E> {
     }
 
     public int getMaxPage() {
-        return ((this.types.size() / this.amountPerPage) - 1);
+        return (types.size() / amountPerPage) - 1;
     }
 
     public boolean hasPage(int page) {
-        return !(page > getMaxPage());
+        return !(page > getMaxPage() + 1);
     }
 
     public List<E> getPage(int page) {
         List<E> pageTypes = new ArrayList<>();
-        if (page > getMaxPage() + 1) {
-            return pageTypes;
-        }
+        if (page > getMaxPage() + 1) return pageTypes;
 
-        for (int i = 0; i < this.amountPerPage; i++) {
-            int current = i + (page * this.amountPerPage);
+        for (int i = 0; i < amountPerPage; i++) {
+            int current = i + (page * amountPerPage);
 
-            if (current >= this.types.size()) {
-                break;
-            }
+            if (current >= types.size()) break;
 
-            pageTypes.add(this.types.get(current));
+            pageTypes.add(types.get(current));
         }
 
         return pageTypes;
