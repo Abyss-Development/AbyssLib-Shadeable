@@ -43,6 +43,10 @@ public class PlaceholderReplacer {
         return this;
     }
 
+    public boolean hasPlaceholder(final String key) {
+        return this.placeholders.containsKey(key);
+    }
+
     public PlaceholderReplacer addTimePlaceholder(String key, int seconds) {
         this.placeholders.put(key, Utils.getTimeFormat(seconds * 1000L));
 
